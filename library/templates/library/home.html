@@ -6,7 +6,7 @@
 {% block body %}
 <div class="jumbotron p-3">
     <div class="well text-center">
-        <h1>Django CRUD: Lybrary</h1>
+        <h1>Django CRUD: Library</h1>
     </div>
 </div>
 <div class="container">
@@ -14,16 +14,16 @@
         <div class="col md-12">
             <div class="jumbotron p-3">
 
-                <h2> <b>Gerenciamento de Estoque</b> <button type="button" class="btn btn-success float-end"
+                <h2> <b>Book Management</b> <button type="button" class="btn btn-success float-end"
                         data-bs-toggle="modal" data-bs-target="#mymodal">Add new book</button> </h2>
                 
                 <table class="table table-hover table-dark">
                     <tr>
                         <td>ID</td>
-                        <td>Nome</td>
-                        <td>Quantidade</td>
-                        <td>Categoria</td>
-                        <td>Ação</td>
+                        <td>Title</td>
+                        <td>Pages</td>
+                        <td>Author</td>
+                        <td>Action</td>
                     </tr>
                     {% for book in books %}
                     <tr>
@@ -33,9 +33,9 @@
                         <td>{{book.author}}</td>
                         <td>
                             <a href="/update/{{book.id}}" class="btn btn-warning btn-xs" data-bs-toggle="modal"
-                                data-bs-target="#modaledit{{book.id}}">Editar</a>
+                                data-bs-target="#modaledit{{book.id}}">Edit</a>
                             <a href="/delete/{{book.id}}" class="btn btn-danger btn-xs"data-bs-toggle="modal"
-                                data-bs-target="#deletemodal">Deletar</a>
+                                data-bs-target="#deletemodal">Delete</a>
                         </td>
                     </tr>
                     <div class="modal fade" id="modaledit{{book.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -43,31 +43,31 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Edição de jogo</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Book Editing</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="/atualizar/{{book.id}}" method="POST">
+                                    <form action="/update/{{book.id}}" method="POST">
                                         {% csrf_token %}
                                         <div class="form-group">
-                                            <label>Nome</label>
+                                            <label>Title</label>
                                             <input type="hidden" name="id" value="{{book.id}}">
-                                            <input type="text" class="form-control" name="nome" value="{{book.title}}">
+                                            <input type="text" class="form-control" name="title" value="{{book.title}}">
                                         </div>
                                         <div class="form-group">
-                                            <label>Quantidade</label>
-                                            <input type="number" class="form-control" name="quantidade"
+                                            <label>Pages</label>
+                                            <input type="number" class="form-control" name="pages"
                                                 value="{{book.pages}}">
                                         </div>
                                         <div class="form-group">
-                                            <label>Categoria</label>
-                                            <input type="text" class="form-control" name="categoria" value="{{book.author}}">
+                                            <label>Author</label>
+                                            <input type="text" class="form-control" name="author" value="{{book.author}}">
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary">Salvar</button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
                                             <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Cancelar</button>
+                                                data-bs-dismiss="modal">Cancel</button>
                                         </div>
                                     </form>
                                 </div>
@@ -83,28 +83,28 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Cadastro de jogos</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Register of Books</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form action="{% url 'create' %}" method="POST">
                                 {% csrf_token %}
                                 <div class="form-group">
-                                    <label>Nome</label>
+                                    <label>Title</label>
                                     <input type="text" class="form-control" name="title" required='1'>
                                 </div>
                                 <div class="form-group">
-                                    <label>Quantidade</label>
+                                    <label>Pages</label>
                                     <input type="number" class="form-control" name="pages" required='1'>
                                 </div>
                                 <div class="form-group">
-                                    <label>Categoria</label>
+                                    <label>Author</label>
                                     <input type="text" class="form-control" name="author" required='1'>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                    <button type="submit" class="btn btn-primary">Register</button>
                                     <button type="button" class="btn btn-secondary float-end"
-                                        data-bs-dismiss="modal">Cancelar</button>
+                                        data-bs-dismiss="modal">Cancel</button>
                                 </div>
                             </form>
                         </div>
@@ -116,20 +116,20 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Deletar produto</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Delete Book</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form action="{% url 'create' %}" method="POST">
                                 {% csrf_token %}
                                 <div class="form-group">
-                                    <p>Tem certeza que deseja deletar esse produto</p>
+                                    <p>Are you sure you want to delete this book</p>
                                 </div>
                                 <div class="modal-footer">
                                     <input type="hidden" name="id" value="{{book.id}}">
-                                    <a href="/delete/{{book.id}}" type="submit" class="btn btn-primary btn-xs">Deletar</a>
+                                    <a href="/delete/{{book.id}}" type="submit" class="btn btn-primary btn-xs">Delete</a>
                                     <button type="button" class="btn btn-secondary float-end"
-                                        data-bs-dismiss="modal">Cancelar</button>
+                                        data-bs-dismiss="modal">Cancel</button>
                                 </div>
                             </form>
                         </div>

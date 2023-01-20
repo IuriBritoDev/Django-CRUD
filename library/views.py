@@ -27,11 +27,14 @@ def read(request):
 
 
 def update(request, id):
-    book = Book.objects.get(pk = id)
-    form = BookRegistration(request.POST, instance=book)
-    
+    books = Book.objects.all()
+    boo = Book.objects.get(pk = id)
+    form = BookRegistration(request.POST, instance=boo)
+    print(form)
     if request.POST:
+        print('ttttttttttttttttttttttttt')
         if form.is_valid():
+            print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
             form.save()
             return redirect('home')
 
@@ -39,7 +42,7 @@ def update(request, id):
 
 
 def delete(required, id):
-    delBock = Book.objects.get(pk = id)
+    delBook = Book.objects.get(pk = id)
     delBook.delete()
 
     return redirect('home')
