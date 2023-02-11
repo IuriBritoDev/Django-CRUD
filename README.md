@@ -1,8 +1,23 @@
 # Django-CRUD
  Django CRUD: Controle de livros
  
+### Requirements
+ Python 3.9.2
 
-python manage.py makemigrations library
-python manage.py migrate
-python manage.py createsuperuser 
-python manage.py runserver
+### Installation
+ ```
+ pip install -r requirements.txt
+ ```
+ 
+### Migrations
+ ```
+ python manage.py makemigrations
+ ```
+ ```
+ python manage.py migrate 
+ ```
+
+### Run project
+ ```
+ python manage.py runserver
+ ```
